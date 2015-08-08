@@ -9,6 +9,8 @@ public class MainActivity extends AppCompatActivity {
 
     //Explicit
     private UserTABLE objUserTABLE;
+    private FoodTABLE objFoodTABLE;
+    private OrderTABLE objOrderTABLE;
 
 
     @Override
@@ -19,10 +21,22 @@ public class MainActivity extends AppCompatActivity {
         //Connected Database
         connectedDatabase();
 
+        //Test Add Data
+        testAddData();
+
+
     }   // onCreate
+
+    private void testAddData() {
+        objUserTABLE.addUser("testUser", "testPass", "testName");
+        objFoodTABLE.addFood("ข้าวผัด", "Path", "45");
+        objOrderTABLE.addOrder("Officer", "Desk", "Food", "5");
+    }
 
     private void connectedDatabase() {
         objUserTABLE = new UserTABLE(this);
+        objFoodTABLE = new FoodTABLE(this);
+        objOrderTABLE = new OrderTABLE(this);
     }
 
     @Override
