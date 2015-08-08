@@ -1,5 +1,7 @@
 package appewtc.masterung.ungrestaurant;
 
+import android.database.sqlite.SQLiteDatabase;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -22,10 +24,28 @@ public class MainActivity extends AppCompatActivity {
         connectedDatabase();
 
         //Test Add Data
-        testAddData();
+       // testAddData();
+
+        //Syn JSON to SQLite
+        synJSONtoSQLite();
 
 
     }   // onCreate
+
+    private void synJSONtoSQLite() {
+
+        //Setup my Policy
+        StrictMode.ThreadPolicy myPolicy = new StrictMode.
+                ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(myPolicy);
+
+        //Delete All Data
+        SQLiteDatabase objSqLiteDatabase = openOrCreateDatabase("Restaurant.db", MODE_PRIVATE, null);
+        objSqLiteDatabase.delete("userTABLE", null, null);
+        objSqLiteDatabase.delete("foodTABLE", null, null);
+        objSqLiteDatabase.delete("orderTABLE", null, null);
+
+    }   // synJSONtoSQLite
 
     private void testAddData() {
         objUserTABLE.addUser("testUser", "testPass", "testName");
