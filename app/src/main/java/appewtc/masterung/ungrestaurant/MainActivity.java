@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -26,12 +27,17 @@ public class MainActivity extends AppCompatActivity {
     private UserTABLE objUserTABLE;
     private FoodTABLE objFoodTABLE;
     private OrderTABLE objOrderTABLE;
+    private EditText userEditText, passwordEditText;
+    private String userString, passwordString;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Bind Widget
+        bindWidget();
 
         //Connected Database
         connectedDatabase();
@@ -44,6 +50,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     }   // onCreate
+
+    private void bindWidget() {
+        userEditText = (EditText) findViewById(R.id.editText);
+        passwordEditText = (EditText) findViewById(R.id.editText2);
+    }
 
     private void synJSONtoSQLite() {
 
